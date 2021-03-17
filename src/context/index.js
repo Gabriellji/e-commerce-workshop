@@ -7,6 +7,8 @@ export const ApiContext = React.createContext();
 const initialState = {
   data: [],
   isLoaded: false,
+  cart: [],
+  wishlist: []
 };
 
 const ContextProvider = ({ children }) => {
