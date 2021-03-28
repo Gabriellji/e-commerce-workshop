@@ -13,14 +13,16 @@ const initialState = {
 
 const ContextProvider = ({ children }) => {
   const [state, setState] = useState(initialState);
+  const [offset, setOffset] = useState(0);
+
 
   useEffect(() => {
-    getData();
+    getData(offset);
   }, []);
 
-  const getData = () => {
+  const getData = (num) => {
     const _apiUrl =
-      "https://api.musement.com/api/v3/venues/164/activities?limit=6";
+      `https://api.musement.com/api/v3/venues/164/activities?limit=6&offset=${num}`;
 
     setState({
       ...state,
@@ -39,7 +41,7 @@ const ContextProvider = ({ children }) => {
   };
 
   return (
-    <ApiContext.Provider value={{ state, setState }}>
+    <ApiContext.Provider value={{ state, setState, offset, setOffset, getData }}>
       {children}
     </ApiContext.Provider>
   );
